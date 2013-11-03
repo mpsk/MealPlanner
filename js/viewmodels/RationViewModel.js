@@ -11,6 +11,9 @@ function RationViewModel(){
 		}),
 		carbohydrate: ko.computed(function() {
 			return getSum(addedDishes(), 'carbohydrate');
+		}),
+		kcal: ko.computed(function() {
+			return getSum(addedDishes(), 'kcal');
 		})
 	};
 

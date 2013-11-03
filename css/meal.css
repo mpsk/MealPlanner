@@ -85,6 +85,10 @@ div.mp-settings div.input div.slider div.checkbox{
 	float: right;
 }
 
+div.mp-settings div.message{
+	padding: 0.5em !important;
+}
+
 .filter{
 	padding-left: 10px;
 }

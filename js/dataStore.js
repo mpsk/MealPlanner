@@ -2,7 +2,10 @@ function DataStore(){
 
 
 	return {
-		addedDishes: ko.observableArray([])
+		addedDishes: ko.observableArray([]),
+		total: function(){
+			return rationVM.total
+		}
 	}
 }
 

@@ -19,6 +19,7 @@ function DishesViewModel(){
 	};
 
 	var addDish = function(){
+		this.time = time();
 		dataStore.addedDishes.push(this);
 		console.log(dataStore.addedDishes());
 	};
@@ -27,7 +28,8 @@ function DishesViewModel(){
 		return {
 			protein: rationVM.total.protein(),
 			fats: rationVM.total.fats(),
-			carbohydrate: rationVM.total.carbohydrate()
+			carbohydrate: rationVM.total.carbohydrate(),
+			kcal: rationVM.total.kcal(),
 		}
 	});
 

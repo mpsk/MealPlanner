@@ -19,8 +19,8 @@
 
 	<link rel="stylesheet" href="css/meal.css">
 	<script src="js/dataStore.js"></script>
-	<script src="js/viewmodels/SettingsViewModel.js"></script>
 	<script src="js/viewmodels/RationViewModel.js"></script>
+	<script src="js/viewmodels/SettingsViewModel.js"></script>
 	<script src="js/viewmodels/DishesViewModel.js"></script>
 
 	<!-- <script src="js/DishViewModel.js"></script> -->
@@ -45,6 +45,13 @@
 
 	    <div class="mp-settings side item">
 	    	<h4 class="">Settings for day</h4>
+	    	<div class="yellow ui message">
+		    	<small>
+		    	Белки:<span data-bind="text: left.protein"></span>,
+		    	Жиры:<span data-bind="text: left.fats"></span>,
+		    	Угл.:<span data-bind="text: left.carbohydrate"></span>
+		    	</small>
+	    	</div>
 	    	<div class="ui input">
 	    		<div class="inline field">
 	    			<span>Protein:</span>
@@ -57,13 +64,13 @@
 	    		<div class="inline field">
 	    			<span>Carbohydrate:</span>
 	    			<input type="number" data-bind="value: limitation.carbohydrate">	
-	    		</div> <!--
+	    		</div>
 	    		<div class="inline field">
-	    			<span>Allow out of max.:</span>
-	    			<div class="ui toggle checkbox"><input type="checkbox" data-bind="checked: allowMax"> <label></label> </div>
-				</div> -->
-				<div data-bind="calendar: selectedDate"></div>
+	    			<span>Kcal:</span>
+	    			<input type="number" data-bind="value: limitation.kcal">	
+	    		</div>
 	    	</div>
+	    	<div data-bind="calendar: selectedDate"></div>
 	    </div>
    
 		</div>
@@ -73,31 +80,37 @@
 		<table class="ui table segment">
 			<thead>
 				<tr>
+					<th class="one wide column">Время</th>
 					<th class="four wide column">Наименование</th>
 					<th class="five wide column">Компоненты</th>
 					<th class="one wide column">Белки</th>
 					<th class="one wide column">Жиры</th>
 					<th class="one wide column">Углеводы</th>
+					<th class="one wide column">Ккал</th>
 					<th class="one wide column"></th>
 				</tr>
 			</thead>
 			<tbody data-bind="foreach: addedDishes">
 				<tr>
+					<td data-bind="text: time"></td>
 					<td data-bind="text: name"></td>
 					<td data-bind="text: components"></td>
 					<td data-bind="text: protein"></td>
 					<td data-bind="text: fats"></td>
 					<td data-bind="text: carbohydrate"></td>
+					<td data-bind="text: kcal"></td>
 					<td><button class="mini ui button" data-bind="click: $root.delDish">X</button></td>
 				</tr>
 			</tbody>
 			<tfoot>
 				<tr>
-					<td class="four wide column">Total: <span data-bind="text: addedDishes().length"></span> </td>
+					<td class="one wide column">Total: <span data-bind="text: addedDishes().length"></span> </td>
+					<td></td>
 					<td></td>
 					<td class="one wide column" data-bind="text: total.protein()"></td>
 					<td class="one wide column" data-bind="text: total.fats()"></td>
 					<td class="one wide column" data-bind="text: total.carbohydrate()"></td>
+					<td class="one wide column" data-bind="text: total.kcal()"></td>
 					<td></td>
 				</tr>
 			</tfoot>
@@ -126,12 +139,12 @@
 					<img class="rounded ui image" data-bind="attr:{src: img}">
 					<button class="ui tiny green button" 
 							data-bind=" 
-							css: {disabled: ( $root.allowed('protein', protein)
-											  || $root.allowed('fats', fats)
-											  || $root.allowed('carbohydrate', carbohydrate) )},
-							disable: ( $root.allowed('protein', protein)
-											  || $root.allowed('fats', fats)
-											  || $root.allowed('carbohydrate', carbohydrate) ),
+							css: {disabled: $root.allowed('protein', protein)
+									|| $root.allowed('fats', fats)
+									|| $root.allowed('carbohydrate', carbohydrate) },
+							disable: $root.allowed('protein', protein)
+									|| $root.allowed('fats', fats)
+									|| $root.allowed('carbohydrate', carbohydrate),
 							click: $root.addDish">Add</button>
 				</div>
 				<div class="content">
