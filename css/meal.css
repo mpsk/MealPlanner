@@ -96,3 +96,8 @@ div.mp-settings div.message{
 .error {
 	color: #D95C5C;
 }
+
+.calendar .datepicker {
+	margin: 0 auto;
+	padding-top: 10px;
+}

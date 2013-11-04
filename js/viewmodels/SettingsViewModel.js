@@ -1,10 +1,10 @@
 function SettingsViewModel(){
 
 	var limitation = {
-		protein: ko.observable(10),
-		fats: ko.observable(16),
-		carbohydrate: ko.observable(100),
-		kcal: ko.observable(400)
+		protein: ko.observable(50),
+		fats: ko.observable(50),
+		carbohydrate: ko.observable(200),
+		kcal: ko.observable(500)
 	};
 
 	var total = dataStore.total;
