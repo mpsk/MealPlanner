@@ -5,7 +5,11 @@
         $(element).datepicker({
             startDate: selectedDate()
         }).on('changeDate', function (e) {
-            selectedDate(e.date);
+            e.date.toLocaleString();
+            var date = 1900+e.date.getYear()+'-'+e.date.getMonth()+'-'+e.date.getDate();
+            console.log(date);
+            selectedDate(date);
         });
+
     }
 };

@@ -70,13 +70,14 @@
 	    			<input type="number" data-bind="value: limitation.kcal">	
 	    		</div>
 	    	</div>
-	    	<div data-bind="calendar: selectedDate"></div>
+	    	<div class="calendar" data-bind="calendar: selectedDate, value: filteredDate"></div>
 	    </div>
-   
+	    <!-- <div class="calendar" data-bind="calendar: selectedDate"></div> -->
 		</div>
 	</sidebar>
 
 	<section class="mp-ration">
+		<h3 class="ui purple label" data-bind="text: selectedDate"></h3>
 		<table class="ui table segment">
 			<thead>
 				<tr>
@@ -90,7 +91,7 @@
 					<th class="one wide column"></th>
 				</tr>
 			</thead>
-			<tbody data-bind="foreach: addedDishes">
+			<tbody data-bind="foreach: filteredRation">
 				<tr>
 					<td data-bind="text: time"></td>
 					<td data-bind="text: name"></td>

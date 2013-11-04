@@ -20,6 +20,7 @@ function DishesViewModel(){
 
 	var addDish = function(){
 		this.time = time();
+		this.date = rationVM.selectedDate();
 		dataStore.addedDishes.push(this);
 		console.log(dataStore.addedDishes());
 	};

@@ -24,11 +24,11 @@ function SettingsViewModel(){
 		})
 	};	
 	
-	var selectedDate = ko.observable(new Date());
+	// var selectedDate = ko.observable(new Date());
 
 	return {
 		limitation: limitation,
-		selectedDate: selectedDate,
+		// selectedDate: selectedDate,
 		left: left
 	}
 };

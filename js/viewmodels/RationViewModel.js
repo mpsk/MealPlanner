@@ -1,7 +1,11 @@
 function RationViewModel(){
 
+	var d = new Date();
+	d.toLocaleString();
+
 	var addedDishes = dataStore.addedDishes;
-	
+	var selectedDate = ko.observable(1900+d.getYear()+'-'+d.getMonth()+'-'+d.getDate());
+
 	var total = {
 		protein: ko.computed(function() {
 			return getSum(addedDishes(), 'protein');
@@ -25,11 +29,22 @@ function RationViewModel(){
 		$('section.mp-ration').printThis();
 	};
 
+	var filteredDate = ko.observable();
+
+	var filteredRation = ko.computed(function(){
+		return ko.utils.arrayFilter(addedDishes(), function(item) {
+			return !selectedDate() ? true : (item.date.indexOf(selectedDate()) != -1);
+		});
+	});
+
 	return {
 		addedDishes: addedDishes,
 		delDish: delDish,
 		total: total,
-		print: print
+		print: print,
+		filteredDate: filteredDate,
+		selectedDate: selectedDate,
+		filteredRation: filteredRation
 	}
 };
 
